@@ -1,0 +1,200 @@
+/* src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Import fonts ──────────────────────────────────────────────────────────── */
+@layer base {
+  :root {
+    --color-amber: #d4a853;
+    --color-amber-light: #f0c97a;
+    --color-void: #0a0a0f;
+    --color-ivory: #f5f0e8;
+  }
+  #root {
+    position: relative;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-void-900 text-ivory font-sans antialiased;
+    background-color: #0a0a0f;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0d0d18;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #d4a853;
+    border-radius: 3px;
+  }
+
+  /* Selection highlight */
+  ::selection {
+    background: rgba(212, 168, 83, 0.3);
+    color: #f5f0e8;
+  }
+}
+
+/* ── Utility Classes ───────────────────────────────────────────────────────── */
+@layer components {
+  /* Film grain overlay — applied to hero sections */
+  .grain-overlay {
+    position: relative;
+  }
+  .grain-overlay::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.08;
+    z-index: 1;
+  }
+
+  /* Cinematic image container with bottom gradient */
+  .cinematic-image {
+    @apply relative overflow-hidden;
+  }
+  .cinematic-image::after {
+    content: "";
+    @apply absolute inset-0;
+    background: linear-gradient(
+      to top,
+      rgba(10, 10, 15, 0.9) 0%,
+      rgba(10, 10, 15, 0.3) 50%,
+      transparent 100%
+    );
+  }
+
+  /* Amber underline decoration */
+  .amber-underline {
+    position: relative;
+    display: inline-block;
+  }
+  .amber-underline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 100%;
+    height: 2px;
+    background: var(--color-amber);
+  }
+
+  /* Stamp-style label */
+  .stamp-label {
+    @apply font-mono text-xs uppercase tracking-[0.2em] text-amber-400 px-3 py-1 border border-amber-400/30 rounded-sm;
+  }
+
+  /* Glass card */
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg;
+  }
+
+  /* Skeleton loading */
+  .skeleton {
+    @apply bg-gradient-to-r from-void-700 via-void-600 to-void-700 bg-[length:200%_100%] animate-shimmer;
+  }
+
+  /* Blog content typography */
+  .prose-travel {
+    @apply text-ivory/80 leading-relaxed;
+  }
+  .prose-travel h1,
+  .prose-travel h2,
+  .prose-travel h3 {
+    @apply font-display text-ivory font-semibold mt-8 mb-4;
+  }
+  .prose-travel h1 {
+    @apply text-3xl;
+  }
+  .prose-travel h2 {
+    @apply text-2xl;
+  }
+  .prose-travel h3 {
+    @apply text-xl;
+  }
+  .prose-travel p {
+    @apply mb-5;
+  }
+  .prose-travel a {
+    @apply text-amber underline hover:text-amber-light transition-colors;
+  }
+  .prose-travel blockquote {
+    @apply border-l-4 border-amber pl-6 italic text-ivory/60 my-6;
+  }
+  .prose-travel img {
+    @apply rounded-lg w-full my-6;
+  }
+  .prose-travel ul,
+  .prose-travel ol {
+    @apply pl-6 mb-5 space-y-2;
+  }
+  .prose-travel li {
+    @apply text-ivory/70;
+  }
+  .prose-travel strong {
+    @apply text-ivory font-semibold;
+  }
+}
+
+/* ── Page Transitions ──────────────────────────────────────────────────────── */
+.page-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 400ms ease,
+    transform 400ms ease;
+}
+.page-exit {
+  opacity: 1;
+}
+.page-exit-active {
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+/* ── Tiptap Editor Styles ──────────────────────────────────────────────────── */
+.ProseMirror {
+  @apply outline-none min-h-[300px] text-ivory/90 leading-relaxed;
+}
+.ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  @apply text-ivory/30 pointer-events-none;
+  float: left;
+  height: 0;
+}
+.ProseMirror h1 {
+  @apply text-2xl font-display font-semibold my-3;
+}
+.ProseMirror h2 {
+  @apply text-xl font-display font-semibold my-3;
+}
+.ProseMirror blockquote {
+  @apply border-l-4 border-amber pl-4 italic text-ivory/60 my-4;
+}
+.ProseMirror a {
+  @apply text-amber underline;
+}
+.ProseMirror ul {
+  @apply list-disc pl-5 my-3;
+}
+.ProseMirror ol {
+  @apply list-decimal pl-5 my-3;
+}
+.ProseMirror img {
+  @apply rounded-lg max-w-full my-4;
+}
