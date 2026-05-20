@@ -48,16 +48,17 @@ exports.getStats = async (req, res) => {
 
 // ─── GET /api/countries/:slug ─────────────────────────────────────────────────
 exports.getCountryBySlug = async (req, res) => {
-  const country = await Country.findOne({ slug: req.params.slug })
-    .populate({
-      path: 'places',
-      select: 'name slug coverImage description tags visitedAt rating',
-    })
-    .populate({
-      path: 'blogs',
-      match: { status: 'published' },
-      select: 'title slug excerpt coverImage publishedAt readingTime',
-    });
+  const country = await Country.findOneAndUpdate(
+    { slug: req.params.slug },
+    { $inc: { views: 1 } },
+    { new: true }
+  )
+    .populate({ path: 'places', select: 'name slug coverImage description tags visitedAt rating' })
+    .populate({ path: 'blogs', match: { status: 'published' }, select: 'title slug excerpt coverImage publishedAt readingTime' });
+
+  if (!country) return res.status(404).json({ success: false, message: 'Country not found' });
+  res.status(200).json({ success: true, data: country });
+};
 
   if (!country) {
     return res.status(404).json({ success: false, message: 'Country not found' });

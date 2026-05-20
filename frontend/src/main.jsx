@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { Toaster } from "react-hot-toast";
 import App from "./App.jsx";
 import "./index.css";
+import { ThemeProvider } from './context/ThemeContext.jsx'
 
 // React Query client with sensible defaults
 const queryClient = new QueryClient({
@@ -24,7 +25,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
     >
       <QueryClientProvider client={queryClient}>
+        <ThemeProvider>
         <App />
+        </ThemeProvider>
         <Toaster
           position="top-right"
           toastOptions={{

@@ -6,18 +6,23 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Compass, LogIn, LayoutDashboard } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
+import { Sun, Moon, Map, BookMarked } from 'lucide-react'
+import { useTheme } from '../../context/ThemeContext'
 
 const navLinks = [
-  { to: "/", label: "Home" },
-  { to: "/countries", label: "Countries" },
-  { to: "/journal", label: "Journal" },
-  { to: "/timeline", label: "Timeline" },
-];
+  { to: '/', label: 'Home' },
+  { to: '/countries', label: 'Countries' },
+  { to: '/map', label: 'Map' },
+  { to: '/journal', label: 'Journal' },
+  { to: '/timeline', label: 'Timeline' },
+  { to: '/bucket-list', label: 'Bucket List' },
+]
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const { isAuthenticated, isAdmin, logout } = useAuth();
+  const { toggleTheme, isDark } = useTheme();
   const { pathname } = useLocation();
 
   // Detect scroll to change navbar style
@@ -82,6 +87,13 @@ export default function Navbar() {
 
         {/* Auth Buttons */}
         <div className="hidden md:flex items-center gap-4">
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-full text-ivory/50 hover:text-amber transition-colors"
+            aria-label="Toggle theme"
+          >
+            {isDark ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
           {isAuthenticated ? (
             <>
               {isAdmin && (
@@ -147,6 +159,13 @@ export default function Navbar() {
                 </NavLink>
               ))}
               <div className="pt-4 border-t border-white/10 flex flex-col gap-3">
+                <button
+                  onClick={toggleTheme}
+                  className="flex items-center gap-2 text-sm text-ivory/50"
+                >
+                  {isDark ? <Sun size={16} /> : <Moon size={16} />}
+                  {isDark ? 'Light Mode' : 'Dark Mode'}
+                </button>
                 {isAuthenticated ? (
                   <>
                     {isAdmin && (

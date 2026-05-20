@@ -6,39 +6,21 @@ export default {
   theme: {
     extend: {
       // ── Cinematic Color Palette ─────────────────────────────────────────────
-      colors: {
-        // Deep charcoal backgrounds
-        void: {
-          DEFAULT: '#0a0a0f',
-          50: '#f0f0f2',
-          100: '#d4d4d9',
-          200: '#a8a8b3',
-          300: '#7c7c8c',
-          400: '#505066',
-          500: '#2a2a3f',
-          600: '#1a1a2e',
-          700: '#12121f',
-          800: '#0d0d18',
-          900: '#0a0a0f',
-        },
-        // Warm amber/gold accent
-        amber: {
-          DEFAULT: '#d4a853',
-          light: '#f0c97a',
-          dark: '#a07830',
-        },
-        // Muted warm tones
-        dune: {
-          DEFAULT: '#c4a882',
-          light: '#ddc9aa',
-          dark: '#8a7055',
-        },
-        // Clean white for text
-        ivory: {
-          DEFAULT: '#f5f0e8',
-          dark: '#e8ddd0',
-        },
-      },
+    colors: {
+      'void-900': '#0a0a0f',
+      'void-800': '#0d0d18',
+      'void-700': '#12121f',
+      'void-600': '#1a1a2e',
+      'void-500': '#2a2a3f',
+      'amber':       '#d4a853',
+      'amber-light': '#f0c97a',
+      'amber-dark':  '#a07830',
+      'ivory':       '#f5f0e8',
+      'ivory-dark':  '#e8ddd0',
+      'cream':       '#faf8f4',
+      'cream-dark':  '#f0ece4',
+      'stone':       '#e8e0d4',
+    },
       // ── Typography ──────────────────────────────────────────────────────────
       fontFamily: {
         // Serif display font — cinematic headlines

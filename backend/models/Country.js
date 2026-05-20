@@ -59,6 +59,7 @@ const countrySchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    views: { type: Number, default: 0 },
     // Reference to all places within this country
     places: [
       {

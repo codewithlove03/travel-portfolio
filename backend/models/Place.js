@@ -68,6 +68,7 @@ const placeSchema = new mongoose.Schema(
         ref: 'BlogPost',
       },
     ],
+    views: { type: Number, default: 0 }, 
   },
   {
     timestamps: true,

@@ -12,6 +12,8 @@ import BlogList from "./pages/BlogList";
 import BlogPost from "./pages/BlogPost";
 import Login from "./pages/Login";
 import Timeline from "./pages/Timeline";
+import MapView    from './pages/MapView'
+import BucketList from './pages/BucketList'
 
 // Admin pages
 import AdminDashboard from "./pages/admin/Dashboard";
@@ -20,6 +22,8 @@ import AdminPlaces from "./pages/admin/ManagePlaces";
 import AdminBlogs from "./pages/admin/ManageBlogs";
 import AdminAddEditCountry from "./pages/admin/AddEditCountry";
 import AdminAddEditBlog from "./pages/admin/AddEditBlog";
+import AdminBucket    from './pages/admin/ManageBucket'
+import AdminAnalytics from './pages/admin/Analytics'
 
 // Layout
 import Layout from "./components/layout/Layout";
@@ -53,6 +57,8 @@ function AppRoutes() {
         <Route path="/journal/:slug" element={<BlogPost />} />
         <Route path="/timeline" element={<Timeline />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/map"         element={<MapView />} />
+        <Route path="/bucket-list" element={<BucketList />} />
       </Route>
 
       {/* ── Admin Routes ──────────────────────────────────────────────────── */}
@@ -72,6 +78,8 @@ function AppRoutes() {
         <Route path="blogs" element={<AdminBlogs />} />
         <Route path="blogs/new" element={<AdminAddEditBlog />} />
         <Route path="blogs/:id/edit" element={<AdminAddEditBlog />} />
+        <Route path="bucket"    element={<AdminBucket />} />
+        <Route path="analytics" element={<AdminAnalytics />} />
       </Route>
 
       {/* ── 404 ───────────────────────────────────────────────────────────── */}

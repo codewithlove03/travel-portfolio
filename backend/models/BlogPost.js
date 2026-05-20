@@ -104,6 +104,7 @@ const blogPostSchema = new mongoose.Schema(
     publishedAt: {
       type: Date,
     },
+    views: { type: Number, default: 0 }, 
   },
   {
     timestamps: true,

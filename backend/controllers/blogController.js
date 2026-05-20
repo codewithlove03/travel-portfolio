@@ -37,16 +37,17 @@ exports.getAllBlogs = async (req, res) => {
 
 // ─── GET /api/blogs/:slug ─────────────────────────────────────────────────────
 exports.getBlogBySlug = async (req, res) => {
-  const post = await BlogPost.findOne({ slug: req.params.slug, status: 'published' })
+  const post = await BlogPost.findOneAndUpdate(
+    { slug: req.params.slug, status: 'published' },
+    { $inc: { views: 1 } },
+    { new: true }
+  )
     .populate('country', 'name slug flag')
     .populate('place', 'name slug')
     .populate('author', 'name avatar')
     .populate('comments.user', 'name avatar');
 
-  if (!post) {
-    return res.status(404).json({ success: false, message: 'Blog post not found' });
-  }
-
+  if (!post) return res.status(404).json({ success: false, message: 'Blog post not found' });
   res.status(200).json({ success: true, data: post });
 };
 

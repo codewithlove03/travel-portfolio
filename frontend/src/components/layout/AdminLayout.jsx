@@ -14,6 +14,8 @@ import {
   ChevronLeft,
   ChevronRight,
   Menu,
+  Bookmark, 
+  BarChart2
 } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 
@@ -22,6 +24,8 @@ const navItems = [
   { to: "/admin/countries", label: "Countries", icon: Globe },
   { to: "/admin/places", label: "Places", icon: MapPin },
   { to: "/admin/blogs", label: "Blog Posts", icon: BookOpen },
+  { to: '/admin/bucket',    label: 'Bucket List', icon: Bookmark },
+{ to: '/admin/analytics', label: 'Analytics',   icon: BarChart2 },
 ];
 
 export default function AdminLayout() {

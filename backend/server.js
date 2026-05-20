@@ -34,6 +34,8 @@ app.use('/api/auth', require('./routes/auth'));
 app.use('/api/countries', require('./routes/countries'));
 app.use('/api/places', require('./routes/places'));
 app.use('/api/blogs', require('./routes/blogs'));
+app.use('/api/bucket',    require('./routes/bucket'));
+app.use('/api/analytics', require('./routes/analytics'));
 
 // Health check endpoint (useful for Render's zero-sleep pings)
 app.get('/health', (req, res) => {
