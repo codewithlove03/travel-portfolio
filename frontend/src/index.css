@@ -92,7 +92,7 @@
 
   /* Stamp-style label */
   .stamp-label {
-    @apply font-mono text-xs uppercase tracking-[0.2em] text-amber-400 px-3 py-1 border border-amber-400/30 rounded-sm;
+    @apply font-mono text-xs uppercase tracking-[0.2em] text-amber px-3 py-1 border border-amber/30 rounded-sm;
   }
 
   /* Glass card */
